@@ -18,7 +18,7 @@ const theme = createTheme(themeOptions)
 function App() {
     return (
         <ThemeProvider theme={theme}>
-            <Router>
+            <Router basename="/CyclingTourPlanner">
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/trip/:id" element={<TripDetails />} />
