@@ -3,6 +3,7 @@ import Trip from "./Trip"
 import { Grid } from "@mui/material";
 
 function Trips() {
+    const baseUrl = process.env.REACT_APP_BASE_URL;
     const [trips, setTrips] = useState(null);
 
     const newTrip = {
@@ -13,7 +14,7 @@ function Trips() {
     }
 
     useEffect(() => {
-        fetch("http://localhost:8000/trips/")
+        fetch(`${baseUrl}/trips/`)
             .then(response => response.json())
             .then(data => {
                 console.log(newTrip)
