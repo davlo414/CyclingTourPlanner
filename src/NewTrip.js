@@ -6,11 +6,12 @@ import ImageHeader from "./ImageHeader"
 import { FormContainer, TextFieldElement, useForm } from "react-hook-form-mui";
 
 function NewTrip({ trip }) {
+    const baseUrl = process.env.REACT_APP_BASE_URL;
     const formContext = useForm()
     
     const handleSubmit = (e) => {
         console.log(e)
-        fetch("http://localhost:8000/trips/", {
+        fetch(`${baseUrl}/trips/`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

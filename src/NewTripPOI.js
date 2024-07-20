@@ -8,6 +8,7 @@ import { AutocompleteElement, FormContainer, TextFieldElement, useForm } from "r
 import { useNavigate, useParams } from "react-router-dom";
 
 function NewPOI() {
+    const baseUrl = process.env.REACT_APP_BASE_URL;
     const formContext = useForm()
     const { tripId, poiId } = useParams();
     const navigate = useNavigate();
@@ -28,7 +29,7 @@ function NewPOI() {
             },
             "trip": tripId
         }
-        fetch("http://localhost:8000/trippois/", {
+        fetch(`${baseUrl}/trippois/`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

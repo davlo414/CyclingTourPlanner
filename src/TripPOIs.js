@@ -8,6 +8,7 @@ import TabPanel from '@mui/lab/TabPanel';
 import Map from "./Map"
 
 function TripPOIs() {
+    const baseUrl = process.env.REACT_APP_BASE_URL;
     const { id } = useParams();
     const [tripPOIs, setTripPOIs] = useState(null);
     const [value, setValue] = React.useState('1');
@@ -34,7 +35,7 @@ function TripPOIs() {
     }
 
     useEffect(() => {
-        fetch(`http://localhost:8000/pois-group-by-country/${id}`)
+        fetch(`${baseUrl}/pois-group-by-country/${id}`)
             .then(response => response.json())
             .then(data => {
                 setTripPOIs([newPOI, ...data]);

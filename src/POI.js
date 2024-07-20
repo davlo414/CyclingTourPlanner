@@ -8,13 +8,14 @@ import EditIcon from '@mui/icons-material/Edit';
 import ClearIcon from '@mui/icons-material/Clear';
 
 function POI({ tripPOI }) {
+    const baseUrl = process.env.REACT_APP_BASE_URL;
     const navigate = useNavigate();
 
     const setPosition = (position) => (e) => {
         e.stopPropagation();
         e.preventDefault();
         console.log(position)
-        fetch(`http://localhost:8000/trippois/${tripPOI.id}/set_position?position=${position}`, {
+        fetch(`${baseUrl}/trippois/${tripPOI.id}/set_position?position=${position}`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -28,7 +29,7 @@ function POI({ tripPOI }) {
     const deleteTripPOI = (e) => {
         e.stopPropagation();
         e.preventDefault();
-        fetch(`http://localhost:8000/trippois/${tripPOI.id}/`, {
+        fetch(`${baseUrl}/${tripPOI.id}/`, {
             method: 'DELETE',
             mode: 'cors',
             headers: {

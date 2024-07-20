@@ -6,11 +6,12 @@ import Map from "./Map"
 import TripPOIs from "./TripPOIs";
 
 function POIDetails() {
+    const baseUrl = process.env.REACT_APP_BASE_URL;
     const { tripId, poiId } = useParams();
     const [poi, setPOI] = useState(null);
 
     useEffect(() => {
-        fetch(`http://localhost:8000/pois/${poiId}/`)
+        fetch(`${baseUrl}/pois/${poiId}/`)
             .then(response => response.json())
             .then(data => {
                 setPOI(data);

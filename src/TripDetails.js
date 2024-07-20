@@ -5,11 +5,12 @@ import ImageHeader from "./ImageHeader";
 import TripPOIs from "./TripPOIs";
 
 function Trip() {
+    const baseUrl = process.env.REACT_APP_BASE_URL;
     const { id } = useParams();
     const [trip, setTrip] = useState(null);
 
     useEffect(() => {
-        fetch(`http://localhost:8000/trips/${id}/`)
+        fetch(`${baseUrl}/trips/${id}/`)
             .then(response => response.json())
             .then(data => {
                 setTrip(data);
