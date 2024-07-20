@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/CyclingTourPlanner/static/css/main.0de5c10e.css",
+    "main.js": "/CyclingTourPlanner/static/js/main.45dbc432.js",
+    "static/js/453.743eedf1.chunk.js": "/CyclingTourPlanner/static/js/453.743eedf1.chunk.js",
+    "index.html": "/CyclingTourPlanner/index.html",
+    "main.0de5c10e.css.map": "/CyclingTourPlanner/static/css/main.0de5c10e.css.map",
+    "main.45dbc432.js.map": "/CyclingTourPlanner/static/js/main.45dbc432.js.map",
+    "453.743eedf1.chunk.js.map": "/CyclingTourPlanner/static/js/453.743eedf1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0de5c10e.css",
+    "static/js/main.45dbc432.js"
+  ]
+}
