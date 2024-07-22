@@ -33,7 +33,7 @@ function Map({ markers }) {
         });
 
         markers.length !== 1 ?
-        map.current.fitBounds(bounds, { padding: 50 }) : map.current.setCenter([markers[0].lon, markers[0].lat])
+        map.current.fitBounds(bounds, { padding: 50, animate: false }) : map.current.setCenter([markers[0].lon, markers[0].lat])
         map.current.addControl(new maplibregl.NavigationControl(), 'top-right');
         setMapController(createMapLibreGlMapController(map.current, maplibregl));
 
@@ -44,7 +44,7 @@ function Map({ markers }) {
     };
 
     return (
-        <div className="map-wrap">
+        <div className="map-wrap" sx={{height: '80vh'}}>
             <div className="geocoding">
                 <GeocodingControl apiKey={API_KEY} mapController={mapController} onPick={handleSelect}/>
             </div>
