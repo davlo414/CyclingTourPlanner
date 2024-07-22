@@ -5,7 +5,7 @@ import POIDetails from './POIDetails'
 import NewTrip from './NewTrip'
 import NewTripPOI from './NewTripPOI';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 export const themeOptions = {
     palette: {
@@ -18,7 +18,7 @@ const theme = createTheme(themeOptions)
 function App() {
     return (
         <ThemeProvider theme={theme}>
-            <Router basename="/CyclingTourPlanner">
+            <Router>
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/trip/:id" element={<TripDetails />} />

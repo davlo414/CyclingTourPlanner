@@ -4,10 +4,12 @@ import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import Grid from '@mui/material/Unstable_Grid2';
 import ImageHeader from "./ImageHeader"
 import { FormContainer, TextFieldElement, useForm } from "react-hook-form-mui";
+import { useNavigate, useParams } from "react-router-dom";
 
 function NewTrip({ trip }) {
     const baseUrl = process.env.REACT_APP_BASE_URL;
     const formContext = useForm()
+    const navigate = useNavigate();
     
     const handleSubmit = (e) => {
         console.log(e)
@@ -19,7 +21,7 @@ function NewTrip({ trip }) {
               },
             body: JSON.stringify(e)
         })
-            .then(console.log("DONE"))
+            .then(navigate(-1))
             .catch(error => console.error('Error posting trips:', error));
     }
 
