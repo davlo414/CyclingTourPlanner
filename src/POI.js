@@ -11,21 +11,23 @@ function POI({ tripPOI }) {
     const baseUrl = process.env.REACT_APP_BASE_URL;
     const navigate = useNavigate();
 
-    const setPosition = (position) => (e) => {
+    const setPosition = (position) => async (e) => {
         e.stopPropagation();
         e.preventDefault();
-        console.log(position)
-        fetch(`${baseUrl}/trippois/${tripPOI.id}/set_position`, {
+        console.log(position);
+        const response = await fetch(`${baseUrl}/trippois/${tripPOI.id}/set_position`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({'position': `${position}`})
-        })
-            .then(response => response.json())
-            .then(navigate(0))
-            .catch(error => console.error('Error posting trips:', error));
+            body: JSON.stringify({ 'position': `${position}` })
+        });
+        if (response.ok) {
+            navigate(0); // Reloads the page
+        } else {
+            console.error('Error setting position:', response.statusText);
+        }
     }
 
     const deleteTripPOI = (e) => {
