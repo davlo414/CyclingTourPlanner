@@ -15,12 +15,13 @@ function POI({ tripPOI }) {
         e.stopPropagation();
         e.preventDefault();
         console.log(position)
-        fetch(`${baseUrl}/trippois/${tripPOI.id}/set_position?position=${position}`, {
+        fetch(`${baseUrl}/trippois/${tripPOI.id}/set_position`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-              }
+            },
+            body: JSON.stringify({'position': `${position}`})
         })
             .then(navigate(0))
             .catch(error => console.error('Error posting trips:', error));
@@ -35,7 +36,7 @@ function POI({ tripPOI }) {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-              }
+            }
         })
             .then(navigate(0))
             .catch(error => console.error('Error deleting trip poi:', error));
@@ -44,8 +45,8 @@ function POI({ tripPOI }) {
     return (
         <Grid item xs={12} md={4}>
             <Card>
-                <CardActionArea component={RouterLink} to={"/trip/"+tripPOI.trip + "/poi/" + tripPOI.poi.id}>
-                    <CardMedia component="img" image={tripPOI.poi.image ? tripPOI.poi.image : 'https://wallpapercave.com/wp/wp10945186.jpg'} height={300}/>
+                <CardActionArea component={RouterLink} to={"/trip/" + tripPOI.trip + "/poi/" + tripPOI.poi.id}>
+                    <CardMedia component="img" image={tripPOI.poi.image ? tripPOI.poi.image : 'https://wallpapercave.com/wp/wp10945186.jpg'} height={300} />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
                             {tripPOI.poi.name}
@@ -60,10 +61,10 @@ function POI({ tripPOI }) {
                             {tripPOI.distance_to_end ? `${tripPOI.distance_to_end.toFixed(0)} miles to destination` : ""}
                         </Typography>
                         <SpeedDial ariaLabel="hello" sx={{ position: 'absolute', bottom: 16, right: 16 }} icon={<EditRoundedIcon />}>
-                            <SpeedDialAction key="start" icon={<MovingIcon />} tooltipTitle="Set as trip start" onClick={setPosition('start')}/>
-                            <SpeedDialAction key="end" icon={<PlaceIcon />} tooltipTitle="Set as trip end" onClick={setPosition('end')}/>
-                            <SpeedDialAction key="edit" icon={<EditIcon />} tooltipTitle="Edit POI"/>
-                            <SpeedDialAction key="delete" icon={<ClearIcon />} tooltipTitle="Delete POI from trip" onClick={deleteTripPOI}/>
+                            <SpeedDialAction key="start" icon={<MovingIcon />} tooltipTitle="Set as trip start" onClick={setPosition('start')} />
+                            <SpeedDialAction key="end" icon={<PlaceIcon />} tooltipTitle="Set as trip end" onClick={setPosition('end')} />
+                            <SpeedDialAction key="edit" icon={<EditIcon />} tooltipTitle="Edit POI" />
+                            <SpeedDialAction key="delete" icon={<ClearIcon />} tooltipTitle="Delete POI from trip" onClick={deleteTripPOI} />
                         </SpeedDial>
                     </CardContent>
                 </CardActionArea>
