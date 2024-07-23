@@ -23,6 +23,7 @@ function POI({ tripPOI }) {
             },
             body: JSON.stringify({'position': `${position}`})
         })
+            .then(response => response.json())
             .then(navigate(0))
             .catch(error => console.error('Error posting trips:', error));
     }
