@@ -26,7 +26,7 @@ function POIDetails() {
     return (
         <Box>
             <ImageHeader imageUrl={poi.image} title={poi.name} subtitle={poi.description} backName="Back"/>
-            <Container maxWidth='xl'>
+            <Container maxWidth='lg'>
                 <Grid container spacing={1} my={1}>
                     <Grid item xs={12} md={6}>
                         <Typography variant="body1">{poi.details ? poi.details : "Edit this POI to add details."}</Typography>

@@ -25,10 +25,10 @@ function Trip() {
     return (
         <Box>
             <ImageHeader imageUrl={trip.image} title={trip.name} subtitle={trip.description}/>
-            <Container maxWidth='xl'>
+            <Container maxWidth='lg'>
                 <Box display='flex' flexDirection='column' gap={1} my={1}>
                 </Box>
-                <TripPOIs />
+                <TripPOIs trip={trip}/>
             </Container>
         </Box>
     )

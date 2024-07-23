@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { Box, Grid, Tab, Tabs, Typography } from "@mui/material";
+import { Box, Divider, Grid, Tab, Tabs, Typography } from "@mui/material";
 import POI from "./POI";
 import { useParams } from "react-router-dom";
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import Map from "./Map"
+import PublicIcon from '@mui/icons-material/Public';
+import MovingIcon from '@mui/icons-material/Moving';
 
-function TripPOIs() {
+function TripPOIs({ trip }) {
     const baseUrl = process.env.REACT_APP_BASE_URL;
     const { id } = useParams();
     const [tripPOIs, setTripPOIs] = useState(null);
     const [value, setValue] = React.useState('1');
 
     const handleChange = (event, newValue) => {
-      setValue(newValue);
+        setValue(newValue);
     };
 
     const newPOI = {
@@ -49,6 +51,17 @@ function TripPOIs() {
                 <Tab label="Map" value="2" />
             </TabList>
             <TabPanel value="1">
+                <Grid container mb={2}>
+                    <Grid item key={'number_of_countries'} md={6} xs={12} display="flex" justifyContent="center" alignItems="center">
+                        <PublicIcon />
+                        <Typography ml={1} variant="h5">{`${trip.number_of_countries} ${trip.number_of_countries > 1 || trip.number_of_countries === 0 ? 'countries' : 'country'}`}</Typography>
+                    </Grid>
+                    <Grid item key={'number_of_countries'} md={6} xs={12} display="flex" justifyContent="center" alignItems="center">
+                        <MovingIcon />
+                        <Typography ml={1} variant="h5">{`${trip.distance ? trip.distance+' miles' : 'Set start/end POI to see total distance'}` }</Typography>
+                    </Grid>
+                </Grid>
+                <Divider />
                 <Grid container spacing={2}>
                     {tripPOIs ? (
                         tripPOIs.map(tripPOICountry => (

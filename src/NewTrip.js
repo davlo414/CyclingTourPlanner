@@ -28,7 +28,7 @@ function NewTrip({ trip }) {
     return (
         <Box>
             <ImageHeader imageUrl="https://wallpapercave.com/wp/wp10945186.jpg" title="New Trip" subtitle="Create a new trip below"/>
-            <Container maxWidth='xl'>
+            <Container maxWidth='lg'>
                 <Box display='flex' flexDirection='column' gap={1} my={1}>
                     <Typography variant="h5">Enter trip details</Typography>
                 </Box>
