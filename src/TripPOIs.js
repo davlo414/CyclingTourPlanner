@@ -8,6 +8,7 @@ import TabPanel from '@mui/lab/TabPanel';
 import Map from "./Map"
 import PublicIcon from '@mui/icons-material/Public';
 import MovingIcon from '@mui/icons-material/Moving';
+import PlaceIcon from '@mui/icons-material/Place';
 
 function TripPOIs({ trip }) {
     const baseUrl = process.env.REACT_APP_BASE_URL;
@@ -52,11 +53,15 @@ function TripPOIs({ trip }) {
             </TabList>
             <TabPanel value="1">
                 <Grid container mb={2}>
-                    <Grid item key={'number_of_countries'} md={6} xs={12} display="flex" justifyContent="center" alignItems="center">
+                    <Grid item key={'number_of_countries'} md={4} xs={12} display="flex" justifyContent="center" alignItems="center">
                         <PublicIcon />
                         <Typography ml={1} variant="h5">{`${trip.number_of_countries} ${trip.number_of_countries > 1 || trip.number_of_countries === 0 ? 'countries' : 'country'}`}</Typography>
                     </Grid>
-                    <Grid item key={'number_of_countries'} md={6} xs={12} display="flex" justifyContent="center" alignItems="center">
+                    <Grid item key={'number_of_pois'} md={4} xs={12} display="flex" justifyContent="center" alignItems="center">
+                        <PlaceIcon />
+                        <Typography ml={1} variant="h5">{`${trip.number_of_pois} ${trip.number_of_pois > 1 || trip.number_of_pois === 0 ? 'POIs' : 'POI'}` }</Typography>
+                    </Grid>
+                    <Grid item key={'distance'} md={4} xs={12} display="flex" justifyContent="center" alignItems="center">
                         <MovingIcon />
                         <Typography ml={1} variant="h5">{`${trip.distance ? trip.distance+' miles' : 'Set start/end POI to see total distance'}` }</Typography>
                     </Grid>
@@ -82,7 +87,7 @@ function TripPOIs({ trip }) {
                 </Grid>
             </TabPanel>
             <TabPanel value="2">
-                <Map markers={tripPOIs ? tripPOIs.slice(1).map(tripPOICountry => (tripPOICountry.data.map(tripPOIData => (tripPOIData.poi.location)))).flat().flat() : (<p>Loading</p>)} />
+                <Map tripPOIs={tripPOIs ? tripPOIs.slice(1).flatMap(tripPOICountry => tripPOICountry.data) : (<p>Loading</p>)} />
             </TabPanel>
         </TabContext>
 

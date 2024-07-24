@@ -32,7 +32,7 @@ function POIDetails() {
                         <Typography variant="body1">{poi.details ? poi.details : "Edit this POI to add details."}</Typography>
                     </Grid>
                     <Grid item xs={12} md={6}>
-                        <Map markers={[poi.location]}/>
+                        <Map tripPOIs={[{'poi': poi}]}/>
                     </Grid>
                 </Grid>
             </Container>

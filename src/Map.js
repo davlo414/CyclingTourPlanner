@@ -1,12 +1,15 @@
 import React, { useRef, useEffect, useState } from 'react';
-import maplibregl, { MapMouseEvent } from 'maplibre-gl';
+import maplibregl, { MapMouseEvent, Popup } from 'maplibre-gl';
 import { GeocodingControl } from "@maptiler/geocoding-control/react";
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { createMapLibreGlMapController } from "@maptiler/geocoding-control/maplibregl-controller";
 import "@maptiler/geocoding-control/style.css";
 import 'maplibre-gl/dist/maplibre-gl.css';
 import './map.css';
+import POI from './POI';
 
-function Map({ markers }) {
+function Map({ tripPOIs }) {
+    const navigate = useNavigate();
     const mapContainer = useRef(null);
     const map = useRef(null);
     const [lng] = useState(139.753);
@@ -24,16 +27,25 @@ function Map({ markers }) {
         });
 
         const bounds = new maplibregl.LngLatBounds();
-
-        markers.forEach(marker => {
-            new maplibregl.Marker()
+        console.log(tripPOIs)
+        tripPOIs.forEach(tripPOI => {
+            const marker = tripPOI.poi.location
+            console.log(marker)
+            const popup = new Popup({closeButton: false, closeOnClick: false}).setHTML(tripPOI.poi.name)
+            const mapMarker = new maplibregl.Marker()
                 .setLngLat([marker.lon, marker.lat])
+                .setPopup(popup)
                 .addTo(map.current);
+
+            mapMarker.getElement().addEventListener('mouseenter', () => {popup.setLngLat([marker.lon, marker.lat]).addTo(map.current)});
+            mapMarker.getElement().addEventListener('mouseleave', () => {popup.remove()});
+            mapMarker.getElement().addEventListener('click', () => {navigate("/trip/" + tripPOI.trip + "/poi/" + tripPOI.poi.id)});
+
             bounds.extend([marker.lon, marker.lat])
         });
 
-        markers.length !== 1 ?
-        map.current.fitBounds(bounds, { padding: 50, animate: false }) : map.current.setCenter([markers[0].lon, markers[0].lat])
+        tripPOIs.length !== 1 ?
+        map.current.fitBounds(bounds, { padding: 50, animate: false }) : map.current.setCenter([tripPOIs[0].poi.location.lon, tripPOIs[0].poi.location.lat])
         map.current.addControl(new maplibregl.NavigationControl(), 'top-right');
         setMapController(createMapLibreGlMapController(map.current, maplibregl));
 
