@@ -20,7 +20,7 @@ function POIDetails() {
     }, [poiId]);
 
     if (!poi) {
-        return <Typography>Loading...</Typography>;
+        return <Typography>Loading...This could take up to a minute.</Typography>;
     }
     
     return (

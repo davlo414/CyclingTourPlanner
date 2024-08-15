@@ -31,7 +31,7 @@ function Trips() {
                     trips ? (
                         trips.map(trip => <Trip trip={trip} key={trip.id} />)
                     ) : (
-                        <p>Loading...</p>
+                        <p>Loading...This could take up to a minute.</p>
                     )
                 }
             </Grid>

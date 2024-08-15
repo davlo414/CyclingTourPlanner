@@ -19,7 +19,7 @@ function Trip() {
     }, [id]);
 
     if (!trip) {
-        return <Typography>Loading...</Typography>;
+        return <Typography>Loading...This could take up to a minute.</Typography>;
     }
     
     return (

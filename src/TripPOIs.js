@@ -82,7 +82,7 @@ function TripPOIs({ trip }) {
                             </Grid>
                         ))
                     ) : (
-                        <p>Loading...</p>
+                        <p>Loading...This could take up to a minute.</p>
                     )}
                 </Grid>
             </TabPanel>
